@@ -6,9 +6,9 @@ import io.cucumber.java.Before;
 import static browserControl.webConnector.closeBrowser;
 import static browserControl.webConnector.openBrowser;
 
-public class CucumberHooks {
+
     public class CucumberHooks extends webConnector {
-    }
+
 
     @Before
     public void setup() {
