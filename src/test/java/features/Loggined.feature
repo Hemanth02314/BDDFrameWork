@@ -1,3 +1,4 @@
+
 Feature: Login Page
   As a user of the system
   I should be able login with valid credentials
@@ -20,7 +21,7 @@ Feature: Login Page
     When the user login with "standard_user" username and "secret_sauce1" password
     And the user click on login button
     Then the user should see "Epic sadface: Username and password do not match any user in this service"
-
+  @RegressionTest
   Scenario: 4.Verify login with Empty Credentials
     When the user login with "standard_user" username and "" password
     And the user click on login button
@@ -31,6 +32,14 @@ Feature: Login Page
     And the user click on login button
     Then the user should see "Epic sadface: Username and password do not match any user in this service"
 
-  Scenario Outline: 6.Verify login with invalid Credentials using data driven
+  @RegressionTest
+ Scenario Outline: 6.Verify login with invalid Credentials using data driven
     When the user login with "<username>" username and "<password>" password
     Then the user should see "<expectedText">
+
+      Examples:
+        | username       | password      | expectedText                                                              |
+        | standard_user1 | secret_sauce  | Epic sadface: Username and password do not match any user in this service |
+        | standard_user  | secret_sauce1 | Epic sadface: Username and password do not match any user in this service |
+        | standard_user  |               | Epic sadface: Password is required                                        |
+        | standard_user  | secret_ sauce | Epic sadface: Username and password do not match any user in this service |
