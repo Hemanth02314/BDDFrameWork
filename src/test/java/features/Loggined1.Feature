@@ -1,36 +1,51 @@
-@RegressionTest
-Feature: Verify Login Page
-  As a user of the system
-  I should be able to login with valid credentials
-  so that I can log into my account
 
-  Background: Navigation
+Feature: Login Page
+  As a user of the system
+  I should be able login with valid credentials
+  So that I can log into my account
+
+  Background: Navigate
     Given the user navigate to "Swag Labs" page
 
-  Scenario: 1. Verify login with valid credentials
-    When the user login with "locked_out_user" username and "secret_sauce" password
+  Scenario: 1.Verify login with valid Credentials
+    When the user enters "locked_out_user" in username field
+    And  the user enters "secret_sauce" in password field
     And the user click on login button
-    Then the user should see "Epic sadface: Sorry, this user has been locked out."
+    Then the user should see "Epic sadface:  Sorry, this user has been locked out."
+
+  Scenario: 2.Verify login with invalid username
+    When the user enters "locked_out_user1" in username field
+    And the user enters "secret_sauce" in password field
+    And the user click on login button
+    Then the user should see "Epic sadface: Username and password do not match any user in this service"
+
+  Scenario: 3.Verify login with Invalid password
+    When the user enters "locked_out_user" in username field
+    And  the user enters "secret_sauce1" in password field
+    And the user click on login button
+    Then the user should see "Epic sadface: Username and password do not match any user in this service"
+
   @RegressionTest
-  Scenario: 2. Verify login with Invalid username
-    When the user login with "locked_out_user1" username and "secret_sauce" password
+  Scenario: 4.Verify login with Empty Credentials
+    When the user enters "locked_out_user" in username field
+    And the user enters "" in password field
+    And the user click on login button
+    Then the user should see "Epic sadface: Password is required"
+
+  Scenario: 5.Verify login with Space in Credentials
+    When the user enters "locked_out_user" in username field
+    And  the user enters "secret_ sauce" in password field
     And the user click on login button
     Then the user should see "Epic sadface: Username and password do not match any user in this service"
 
-  Scenario: 3. Verify login with Invalid password
-    When the user login with "locked_out_user" username and "secret_sauce1" password
-    And the user click on login button
-    Then the user should see "Epic sadface: Username and password do not match any user in this service"
-
-    @SmokeTest
-  Scenario Outline: 4.Verify Login with Invalid Credentials
+  @RegressionTest
+  Scenario Outline: 6.Verify login with invalid Credentials using data driven
     When the user login with "<username>" username and "<password>" password
-    And the user click on login button
     Then the user should see "<expectedText>"
 
     Examples:
-      | username         | password      | expectedText                                                              |
-      | locked_out_user1 | secret_sauce  | Epic sadface: Username and password do not match any user in this service |
-      | locked_out_user  | secret_sauce1 | Epic sadface: Username and password do not match any user in this service |
-      | locked_out_user  |               | Epic sadface: Password is required                                        |
-      | locked_out_ user | secret_sauce  | Epic sadface: Username and password do not match any user in this service |
+      | username       | password      | expectedText
+      | standard_user1 | secret_sauce  | Epic sadface: Username and password do not match any user in this service |
+      | standard_user  | secret_sauce1 | Epic sadface: Username and password do not match any user in this service |
+      | standard_user  |               | Epic sadface: Password is required                                        |
+      |standard_ user  | secret_ sauce | Epic sadface: Username and password do not match any user in this service |
