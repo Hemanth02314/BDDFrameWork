@@ -6,8 +6,8 @@ public class ConstantUtils {
     public static String BASE_URL = "https://www.saucedemo.com";
 
     // Browser name Chrome or Firefox
-    public static String BROWSER_NAME = "FireFox";
+    public static String BROWSER_NAME = "Firefox";
 
     // Browser type = Headed / Headless
-    public static String BROWSER_TYPE = "Headed";
+    public static String BROWSER_TYPE = "Headless";
 }

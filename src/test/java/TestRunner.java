@@ -7,7 +7,11 @@ import org.junit.runner.RunWith;
     @RunWith(Cucumber.class)
     @CucumberOptions(plugin = {"pretty", "html:target/cucumber.html"}
             , features = "src/test/java/features"
-            , glue = {"browserControl", "stepDefinitions"})
+            , glue = {"browserControl", "stepDefinations"}
+            , tags = "@SmokeTest")
+
+
+
 
     public class TestRunner {
     }
