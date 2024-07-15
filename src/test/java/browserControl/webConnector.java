@@ -20,7 +20,7 @@ public class webConnector {
             ChromeOptions co = new ChromeOptions();
             co.addArguments("start-maximized");
             if (ConstantUtils.BROWSER_TYPE.equalsIgnoreCase("headless")) {
-                co.addArguments("headless");
+                co.addArguments("--headless");
             }
             driver = new ChromeDriver(co);
         }

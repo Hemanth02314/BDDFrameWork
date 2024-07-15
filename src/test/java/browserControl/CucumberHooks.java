@@ -8,7 +8,8 @@ import org.openqa.selenium.TakesScreenshot;
 
 
 
-    public class CucumberHooks extends webConnector {
+
+public class CucumberHooks extends webConnector {
 
 
     @Before
